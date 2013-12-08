@@ -58,9 +58,10 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
-    <div>
-        <%- form.textarea("description", {id: 'editor', style: 'width:800px;'}) %>
+    <div id="editor" style="width:800px;">
+        
     </div>
+    <%- form.input("description", {id:'description', type:'hidden'}) %>
 </div>
 </div>
 <script>

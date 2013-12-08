@@ -47,9 +47,9 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
-    <div>
-        <%- form.textarea("content", {id: 'editor', style: 'width:800px;'}) %>
+    <div id='editor' style='width:800px;'>
     </div>
+    <%- form.input("content", {id: 'content', type: 'hidden'}) %>
 </div>
 </div>
 <script>
@@ -76,6 +76,7 @@
 	};
     initToolbarBootstrapBindings();  
 	$('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
+        $('#editor').html($('#content').val());
     window.prettyPrint && prettyPrint();
   });
 </script>

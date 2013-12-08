@@ -1,15 +1,21 @@
+<script>
+function setValue(form){
+  $('#content').attr('value', $('#editor').html());
+}
+</script>
+
 <ul class="breadcrumb">
     <li><%= post.title %></li>
 </ul>
 
 <ul class="breadcrumb2">
     <li>
-	<%= post.description %>
+	<%- post.description %>
     <!-- <%- link_to('Delete', pathTo.post(post), {class: 'btn btn-danger', method: 'delete', remote: true, jsonp: '(function (u) { location.href = u; })'}) %> -->
 	</li>
 </ul>
 
-<% var form = formFor(post, {action: pathTo.post(post), method: 'PUT', id: "post-form", class: 'breadcrumb'}) %>
+<% var form = formFor(post, {onsubmit:'setValue(this)', action: pathTo.post(post), method: 'PUT', id: "post-form", class: 'breadcrumb'}) %>
 <%- form.begin() %>
 <%- include _create_answer %>
 <div class="form-actions">
