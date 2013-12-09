@@ -153,8 +153,8 @@ action('history', function history() {
 
 action('search', function search() {
     this.title = 'Posts index';
-	this.query = {q: ''};
-    Post.all(function (err, posts) {
+    this.query = {q: ''};
+    Post.all({order:'datetime DESC', where:{title: new RegExp(req.body.q)}}, function (err, posts) {
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});
@@ -171,7 +171,7 @@ action('search', function search() {
 action('tag', function tag() {
     this.title = 'Posts index';
     this.query = {q: ''};
-    console.log(req.query.tag);
+    //console.log(req.query.tag);
     Post.all({order: 'datetime DESC', where:{tags: new RegExp(req.query.tag)}}, function (err, posts) {
         console.log(posts);
         switch (params.format) {
@@ -188,7 +188,7 @@ action('tag', function tag() {
 
 action('about', function tags() {
     this.title = 'Posts index';
-	this.query = {q: ''};
+    this.query = {q: ''};
     Post.all(function (err, posts) {
         switch (params.format) {
             case "json":
