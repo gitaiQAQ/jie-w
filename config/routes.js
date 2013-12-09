@@ -4,8 +4,9 @@ exports.routes = function (map) {
 		map.get('tags', '#tags', {collection: true});
 		map.post('search', '#search', {collection: true});
 		map.get('about', '#about', {collection: true});
-                map.get('history', '#history', {collection: true});
+                map.get('history', '#history');
 	});
+    map.get('tags', 'posts#tag');
     map.root('posts#index');
     // Generic routes. Add all your routes below this line
     // feel free to remove generic routes

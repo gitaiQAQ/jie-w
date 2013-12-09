@@ -41,7 +41,7 @@ action(function create() {
 action(function index() {
     this.title = 'Posts index';
 	this.query = {q: ''};
-    Post.all(function (err, posts) {
+    Post.all({order: 'datetime DESC'}, function (err, posts) {
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});
@@ -138,14 +138,14 @@ action(function destroy() {
 action('history', function history() {
     this.title = 'Posts index';
     this.query = {q: ''};
-    Post.all(function (err, posts) {
+    Answer.all({where: {question_id: params.post_id}, order:'answer_datetime DESC' }, function (err, questions) {
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});
                 break;
             default:
                 render({
-                    posts: posts
+                    questions: questions
                 });
         }
     });
@@ -168,10 +168,12 @@ action('search', function search() {
 });
 
 
-action('tags', function tags() {
+action('tag', function tag() {
     this.title = 'Posts index';
-	this.query = {q: ''};
-    Post.all(function (err, posts) {
+    this.query = {q: ''};
+    console.log(req.query.tag);
+    Post.all({order: 'datetime DESC', where:{tags: new RegExp(req.query.tag)}}, function (err, posts) {
+        console.log(posts);
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});

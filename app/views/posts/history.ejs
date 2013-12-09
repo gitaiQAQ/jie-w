@@ -1,18 +1,18 @@
 <% 
-if (posts.length > 0) {
-	posts.forEach(function (post) { 
+if (questions.length > 0) {
+	questions.forEach(function (question) { 
 %>
 <ul class="breadcrumb">
-    <li><strong> <%- link_to(post.title, pathTo.post(post)) %> </strong> </li>
+    <li> <%- question.content %> </li>
 </ul>
-<ul class="breadcrumb2">
-    <li> <a href="#">  tags </a>  </li>
+<ul class="breadcrumb2" style="font-size:12px;">
+    <li> <a href="<%- question.author_link %>" target="_blank"> <%- question.author %> </a> 创建于 <%- question.answer_datetime %> </li>
 </ul>
 <% 
 });
 } else {
  %>
 <p class="alert alert-block alert-info">
-            <strong>No posts were found.</strong>
+            <strong>No Answer were found.</strong>
         </p>
 <% } %>
