@@ -56,7 +56,7 @@ action(function index() {
 
 action(function show() {
     this.title = '结网--精准问答';
-	this.query = {q: ''};
+    this.query = {q: ''};
     switch(params.format) {
         case "json":
             send({code: 200, data: this.post});
