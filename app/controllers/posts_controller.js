@@ -5,7 +5,7 @@ before(loadPost, {
     });
 
 action('new', function () {
-    this.title = 'New post';
+    this.title = '提出对的问题比给出正确的答案更重要';
     this.query = {q: ''};
     this.post = new Post;
     render();
@@ -22,7 +22,7 @@ action(function create() {
                 }
             });
             format.html(function () {
-                console.log(post);
+                //console.log(post);
                 if (err) {
                     flash('error', 'Post can not be created');
                     render('new', {
@@ -39,7 +39,7 @@ action(function create() {
 });
 
 action(function index() {
-    this.title = 'Posts index';
+    this.title = '结网--精准问答';
 	this.query = {q: ''};
     Post.all({order: 'datetime DESC'}, function (err, posts) {
         switch (params.format) {
@@ -55,7 +55,7 @@ action(function index() {
 });
 
 action(function show() {
-    this.title = 'Post show';
+    this.title = '结网--精准问答';
 	this.query = {q: ''};
     switch(params.format) {
         case "json":
@@ -67,7 +67,7 @@ action(function show() {
 });
 
 action(function edit() {
-    this.title = 'Post edit';
+    this.title = '任何人可以提问，任何人可以回答';
 	this.query = {q: ''};
     switch(params.format) {
         case "json":
@@ -80,11 +80,11 @@ action(function edit() {
 
 action(function update() {
     var post = this.post;
-    this.title = 'Edit post details';
+    this.title = '结网--精准问答';
 	this.query = {q: ''};
 	var answer = new Answer;
-	console.log(req.params);
-	console.log(req.body.Post.title);
+	//console.log(req.params);
+	//console.log(req.body.Post.title);
 	answer.question_id = req.params.id;
 	answer.question_title = req.body.Post.title;
 	answer.content = req.body.Post.content;
@@ -136,7 +136,7 @@ action(function destroy() {
 });
 
 action('history', function history() {
-    this.title = 'Posts index';
+    this.title = '结网--精准问答-最趋近真实的答案只有一个';
     this.query = {q: ''};
     Answer.all({where: {question_id: params.post_id}, order:'answer_datetime DESC' }, function (err, questions) {
         switch (params.format) {
@@ -152,7 +152,7 @@ action('history', function history() {
 });
 
 action('search', function search() {
-    this.title = 'Posts index';
+    this.title = '结网--精准问答';
     this.query = {q: ''};
     Post.all({order:'datetime DESC', where:{title: new RegExp(req.body.q)}}, function (err, posts) {
         switch (params.format) {
@@ -169,11 +169,11 @@ action('search', function search() {
 
 
 action('tag', function tag() {
-    this.title = 'Posts index';
+    this.title = '结网--精准问答';
     this.query = {q: ''};
     //console.log(req.query.tag);
     Post.all({order: 'datetime DESC', where:{tags: new RegExp(req.query.tag)}}, function (err, posts) {
-        console.log(posts);
+        //console.log(posts);
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});
@@ -187,7 +187,7 @@ action('tag', function tag() {
 });
 
 action('about', function tags() {
-    this.title = 'Posts index';
+    this.title = '结网--精准问答--问答版维基百科';
     this.query = {q: ''};
     Post.all(function (err, posts) {
         switch (params.format) {
