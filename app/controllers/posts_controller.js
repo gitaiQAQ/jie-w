@@ -13,6 +13,7 @@ action('new', function () {
 
 action(function create() {
     Post.create(req.body.Post, function (err, post) {
+        //console.log(post);
         respondTo(function (format) {
             format.json(function () {
                 if (err) {
@@ -30,8 +31,8 @@ action(function create() {
                         title: 'New post'
                     });
                 } else {
-                    flash('info', 'Post created');
-                    redirect(path_to.posts);
+                    flash('info', '你今天发布问题也许明天就能授益于人！');
+                    redirect(path_to.post(post.id));
                 }
             });
         });
@@ -41,7 +42,7 @@ action(function create() {
 action(function index() {
     this.title = '结网--精准问答';
 	this.query = {q: ''};
-    Post.all({order: 'datetime DESC'}, function (err, posts) {
+    Post.all({order: 'pv'}, function (err, posts) {
         switch (params.format) {
             case "json":
                 send({code: 200, data: posts});
@@ -104,7 +105,7 @@ action(function update() {
             });
             format.html(function () {
                 if (!err) {
-                    flash('info', 'Post updated');
+                    flash('info', '持续更新答案是精准恒久不变的目标，但这个目标正是由你实现');
                     redirect(path_to.post(post));
                 } else {
                     flash('error', 'Post can not be updated');
