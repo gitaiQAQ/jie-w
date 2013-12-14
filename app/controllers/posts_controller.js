@@ -40,7 +40,7 @@ action(function create() {
 });
 
 action(function index() {
-    this.title = '结网--精准问答';
+    this.title = '精准问答';
 	this.query = {q: ''};
     Post.all({order: 'pv'}, function (err, posts) {
         switch (params.format) {
@@ -56,7 +56,7 @@ action(function index() {
 });
 
 action(function show() {
-    this.title = '结网--精准问答';
+    this.title = '精准问答';
     this.query = {q: ''};
     this.post.pv = this.post.pv + 1;
     if(this.post.pv == 100)
@@ -85,7 +85,7 @@ action(function edit() {
 
 action(function update() {
     var post = this.post;
-    this.title = '结网--精准问答';
+    this.title = '精准问答';
 	this.query = {q: ''};
 	var answer = new Answer;
 	//console.log(req.params);
@@ -141,7 +141,7 @@ action(function destroy() {
 });
 
 action('history', function history() {
-    this.title = '结网--精准问答-最趋近真实的答案只有一个';
+    this.title = '精准问答-最趋近真实的答案只有一个';
     this.query = {q: ''};
     Answer.all({where: {question_id: params.post_id}, order:'answer_datetime DESC' }, function (err, questions) {
         switch (params.format) {
@@ -157,7 +157,7 @@ action('history', function history() {
 });
 
 action('search', function search() {
-    this.title = '结网--精准问答';
+    this.title = '精准问答';
     this.query = {q: ''};
     Post.all({order:'datetime DESC', where:{title: new RegExp(req.body.q)}}, function (err, posts) {
         switch (params.format) {
@@ -174,7 +174,7 @@ action('search', function search() {
 
 
 action('tag', function tag() {
-    this.title = '结网--精准问答';
+    this.title = '精准问答';
     this.query = {q: ''};
     //console.log(req.query.tag);
     Post.all({order: 'datetime DESC', where:{tags: new RegExp(req.query.tag)}}, function (err, posts) {
@@ -192,7 +192,7 @@ action('tag', function tag() {
 });
 
 action('about', function tags() {
-    this.title = '结网--精准问答--问答版维基百科';
+    this.title = '精准问答--问答版维基百科';
     this.query = {q: ''};
     Post.all(function (err, posts) {
         switch (params.format) {
