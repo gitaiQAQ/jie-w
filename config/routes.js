@@ -4,6 +4,7 @@ exports.routes = function (map) {
 		map.get('tags', '#tags', {collection: true});
 		map.post('search', '#search', {collection: true});
 		map.get('about', '#about', {collection: true});
+		map.get('titles', '#titles', {collection: true});
                 map.get('history', '#history');
 	});
     map.get('tags', 'posts#tag');

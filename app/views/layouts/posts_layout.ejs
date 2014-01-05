@@ -5,8 +5,8 @@
         <meta name="keywords" content="精准问答，精准，问答，公益网站" />
         <meta name="description" content="精准问答，精准，问答，任何人可以提问，任何人可以回答，每个问题只有一个答案的公益网站"  />
         <title><%= title %></title>
-        <%- stylesheetLinkTag('bootstrap', 'application', 'bootstrap-responsive', 'index','font-awesome') %>
-        <%- javascriptIncludeTag('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'bootstrap', 'rails', 'application', 'bootstrap-wysiwyg', 'jquery.hotkeys') %>
+        <%- stylesheetLinkTag('bootstrap', 'application', 'bootstrap-responsive', 'index','font-awesome', 'jquery-ui-1.10.3.custom.min') %>
+        <%- javascriptIncludeTag('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'bootstrap', 'rails', 'application', 'bootstrap-wysiwyg', 'jquery.hotkeys', 'jquery-ui-1.10.3.custom.min') %>
         <%- csrfMetaTag() %>
     </head>
     <body>
@@ -53,6 +53,22 @@
                 <p style="font-size:12px;color:grey;">京ICP备13042065号-2 &copy; jingzh.com 2013</p>
             </footer>
         </div>
+
+ <script>
+  $(function() {
+    $( "#aw-search-query" ).autocomplete({
+      source: function(request, response){
+	$.ajax({
+          url: "/posts/titles?q="+request.term,
+          dataType: "json",
+          success: function(data) {
+            response(data.data);
+          }
+        });
+      } 
+    });
+  });
+  </script>
 
 
     </body>

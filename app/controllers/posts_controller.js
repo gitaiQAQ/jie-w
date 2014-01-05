@@ -173,6 +173,19 @@ action('search', function search() {
 });
 
 
+action('titles', function titles() {
+    this.title = '精准问答';
+    this.query = {q: ''};
+    Post.all({where:{title: new RegExp(req.query.q)}}, function (err, posts) {
+	   var titles = new Array();
+	   for(var i=0; i<posts.length; i++){
+		titles.push(posts[i].title);
+   	   }
+           send({code: 200, data: titles});
+        }
+    );
+});
+
 action('tag', function tag() {
     this.title = '精准问答';
     this.query = {q: ''};
