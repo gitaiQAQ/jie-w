@@ -59,7 +59,7 @@ action(function show() {
     this.title = '精准问答';
     this.query = {q: ''};
     this.post.pv = this.post.pv + 1;
-    if(this.post.pv == 100)
+    if(this.post.pv == 1000)
         this.post.pv = 2;
     this.post.updateAttributes(this.post, function (err) { });
     switch(params.format) {
